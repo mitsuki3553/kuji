@@ -7,23 +7,24 @@
     <link rel="stylesheet" href="class.css" />
     <title>くじ！</title>
   </head>
-  <body>
+  <body class="max-w-xl mx-auto min-h-screen flex flex-column">
     <header>くじ！</header>
-    <main>
+    <main class="flex-auto">
       <h1>メンバー</h1>
-      <div id="member" class="flex flex-wrap gap-4"></div>
-      <div class="flex justify-between">
+      <div id="member" class="flex flex-wrap gap-4 p-4 justify-center"></div>
+      <div class="flex justify-between mx-20">
         <div>
-          <h2>誰の？</h2>
+          <h2>誰から？</h2>
           <div id="from"></div>
         </div>
         <button id="btn" disabled>クリック！！</button>
         <div>
-          <h2>誰に？</h2>
+          <h2>誰へ？</h2>
           <div id="to"></div>
         </div>
       </div>
       <h2>組み合わせ</h2>
+      <div id="match" class="flex flex-wrap gap-4 p-4 justify-center"></div>
     </main>
     <footer>
       <div>created by nomura</div>
