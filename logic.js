@@ -18,8 +18,6 @@ const memberList = [
   "櫻井さん",
 ];
 
-//もらってない人
-const wait = [...memberList];
 //残りのプレゼント
 const gift = [...memberList];
 
@@ -28,6 +26,8 @@ const matching = [];
 
 const btnStyle = "pointer border-black border border-solid rounded-full p-4";
 const memberStyle = `${btnStyle} shadow-lg bg-white`;
+
+let timeId;
 
 const member = document.getElementById("member");
 const from = document.getElementById("from");
@@ -52,15 +52,23 @@ window.onload = () => {
 // 名前を押したときの処理
 // ①「from」に名前を追加
 // ②名前一覧の色変更
+// ③ボタンを押せなくする
+// ④「誰へ」の欄がランダムで変わる
 // *「from」に名前がある場合はクリック不可
 // *「from」と同じ名前をクリックすると戻る
 function addFrom(item, index) {
   if (from.innerHTML === "") {
-    from.innerHTML = item;
-    wait.splice(index, 1);
-    btn.disabled = false;
+    from.innerHTML = item; //①
     const name = document.getElementById(item);
-    name.className = `${btnStyle} bg-black`;
+    name.className = `${btnStyle} bg-black`; //②
+    btn.disabled = false; //③
+    if (!timeId) {
+      timeId = setInterval(() => {
+        const random = Math.floor(Math.random() * gift.length);
+        const name = gift[random];
+        to.innerHTML = name;
+      }, 300);
+    }
   } else if (from.innerHTML === item) {
     resetName();
   }
@@ -80,6 +88,10 @@ function resetName() {
   name.className = memberStyle;
   from.innerHTML = "";
   btn.disabled = true;
+  if (timeId) {
+    clearInterval(timeId);
+    to.innerHTML = "";
+  }
 }
 
 //ボタンを押したとき
