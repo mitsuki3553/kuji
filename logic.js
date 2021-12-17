@@ -21,13 +21,14 @@ const memberList = [
 //残りのプレゼント
 const gift = [...memberList];
 
-//もらった後の組み合わせ
+//決まった組み合わせ
 const matching = [];
+
+//「誰へ」のシャッフルのオンオフの制御
+let timeId;
 
 const btnStyle = "pointer border-black border border-solid rounded-full p-4";
 const memberStyle = `${btnStyle} shadow-lg bg-white`;
-
-let timeId;
 
 const member = document.getElementById("member");
 const from = document.getElementById("from");
@@ -50,14 +51,16 @@ window.onload = () => {
 };
 
 // 名前を押したときの処理
-// ①「from」に名前を追加
+// ①「誰から」に名前を追加
 // ②名前一覧の色変更
 // ③ボタンを押せなくする
 // ④「誰へ」の欄がランダムで変わる
-// *「from」に名前がある場合はクリック不可
-// *「from」と同じ名前をクリックすると戻る
+// *「誰から」に名前がある場合はクリック不可
+// *「組み合わせ」の渡す側に名前がある場合は不可
+// *「誰から」と同じ名前をクリックすると戻る
 function addFrom(item, index) {
-  if (from.innerHTML === "") {
+  const exist = matching.length ? matching.filter((i) => i.gift === item) : [];
+  if (from.innerHTML === "" && exist.length === 0) {
     from.innerHTML = item; //①
     const name = document.getElementById(item);
     name.className = `${btnStyle} bg-black`; //②
@@ -128,7 +131,7 @@ function addTo() {
   }
   matching.push({ gift: from.innerText, person: takeGift }); //⑦
   setTimeout(() => {
-    match.innerHTML = ""; //「組み合わせ」内の削除
+    matchDisplay.innerHTML = ""; //「組み合わせ」内の削除
     //⑧
     matching.map((item) => {
       const div = document.createElement("div");
