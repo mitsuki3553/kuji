@@ -30,6 +30,7 @@ const member = document.getElementById("member");
 const from = document.getElementById("from");
 const to = document.getElementById("to");
 const btn = document.getElementById("btn");
+const matchDisplay = document.getElementById("match");
 
 //ロード時の実装
 window.onload = () => {
@@ -38,7 +39,7 @@ window.onload = () => {
     const div = document.createElement("div");
     div.innerText = item;
     div.id = item;
-    div.className = "pointer";
+    div.className = "pointer border-black border border-solid rounded-full p-4";
     div.onclick = () => addFrom(item, index);
     //要素追加
     member.appendChild(div);
@@ -57,18 +58,31 @@ function addFrom(item, index) {
 // ②乱数に対応する人をピックアップ
 // ③「誰に」に表示
 // ④配列から削除
-// ⑤組み合わせに追加
-// ⑥「誰の」「誰に」を削除
+// ⑤組み合わせ配列に追加
+// ⑥組み合わせの表示
+// ⑦「誰の」「誰に」を削除
 
 btn.addEventListener("click", () => addTo());
 function addTo() {
-  //もらってない人がいなくなったらボタンを押せなくする
-  if (gift.length === 0) {
-    btn.disabled = true;
-  }
+  btn.disabled = true;
   const random = Math.floor(Math.random() * gift.length); //①
   const takeGift = gift[random]; //②
   to.innerHTML = takeGift; //③
   gift.splice(random, 1); //④
-  console.log(gift.length);
+  //もらってない人がいなくなったらボタンを押せなくする
+  if (gift.length === 0) {
+    btn.disabled = true;
+  }
+  matching.push({ gift: from.innerText, person: takeGift }); //⑤
+  setTimeout(() => {
+    match.innerHTML = ""; //「組み合わせ」内の削除
+    //⑥
+    matching.map((item) => {
+      const div = document.createElement("div");
+      div.innerText = `${item.gift} → ${item.person}`;
+      matchDisplay.appendChild(div);
+    });
+    to.innerHTML = ""; //⑦
+    from.innerHTML = ""; //⑦
+  }, 2000);
 }
