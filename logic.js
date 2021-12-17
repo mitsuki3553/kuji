@@ -26,6 +26,8 @@ const gift = [...memberList];
 //もらった後の組み合わせ
 const matching = [];
 
+const memberStyle = "pointer border-black border border-solid rounded-full p-4";
+
 const member = document.getElementById("member");
 const from = document.getElementById("from");
 const to = document.getElementById("to");
@@ -35,22 +37,29 @@ const matchDisplay = document.getElementById("match");
 //ロード時の実装
 window.onload = () => {
   memberList.map((item, index) => {
-    //タグを作成して属性を付与
+    //メンバーのタグを作成して属性を付与
     const div = document.createElement("div");
     div.innerText = item;
     div.id = item;
-    div.className = "pointer border-black border border-solid rounded-full p-4";
+    div.className = memberStyle;
     div.onclick = () => addFrom(item, index);
     //要素追加
     member.appendChild(div);
   });
 };
 
-//「誰の」のところに名前追加
+// 名前を押したときの処理
+// ①「from」に名前を追加
+// ②名前一覧の色変更
+// *「from」に名前がある場合はクリック不可
 function addFrom(item, index) {
-  from.innerHTML = item;
-  wait.splice(index, 1);
-  btn.disabled = false;
+  if (from.innerHTML === "") {
+    from.innerHTML = item;
+    wait.splice(index, 1);
+    btn.disabled = false;
+    const name = document.getElementById(item);
+    name.className += " bg-black";
+  }
 }
 
 //ボタンを押したとき
