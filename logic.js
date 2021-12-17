@@ -62,9 +62,7 @@ function addFrom(item, index) {
     const name = document.getElementById(item);
     name.className = `${btnStyle} bg-black`;
   } else if (from.innerHTML === item) {
-    const name = document.getElementById(from.innerHTML);
-    name.className = memberStyle;
-    from.innerHTML = "";
+    resetName();
   }
 }
 
@@ -74,11 +72,14 @@ function addFrom(item, index) {
 // *名前が無いときは無反応
 from.addEventListener("click", () => clearName());
 function clearName() {
-  if (from.innerHTML) {
-    const name = document.getElementById(from.innerHTML);
-    name.className = memberStyle;
-    from.innerHTML = "";
-  }
+  if (from.innerHTML) resetName();
+}
+
+function resetName() {
+  const name = document.getElementById(from.innerHTML);
+  name.className = memberStyle;
+  from.innerHTML = "";
+  btn.disabled = true;
 }
 
 //ボタンを押したとき
