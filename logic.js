@@ -26,7 +26,8 @@ const gift = [...memberList];
 //もらった後の組み合わせ
 const matching = [];
 
-const memberStyle = "pointer border-black border border-solid rounded-full p-4";
+const btnStyle = "pointer border-black border border-solid rounded-full p-4";
+const memberStyle = `${btnStyle} shadow-lg bg-white`;
 
 const member = document.getElementById("member");
 const from = document.getElementById("from");
@@ -52,13 +53,31 @@ window.onload = () => {
 // ①「from」に名前を追加
 // ②名前一覧の色変更
 // *「from」に名前がある場合はクリック不可
+// *「from」と同じ名前をクリックすると戻る
 function addFrom(item, index) {
   if (from.innerHTML === "") {
     from.innerHTML = item;
     wait.splice(index, 1);
     btn.disabled = false;
     const name = document.getElementById(item);
-    name.className += " bg-black";
+    name.className = `${btnStyle} bg-black`;
+  } else if (from.innerHTML === item) {
+    const name = document.getElementById(from.innerHTML);
+    name.className = memberStyle;
+    from.innerHTML = "";
+  }
+}
+
+//「誰から」を押したとき
+// ①指名のキャンセル
+// ②名前一覧の変色を戻す
+// *名前が無いときは無反応
+from.addEventListener("click", () => clearName());
+function clearName() {
+  if (from.innerHTML) {
+    const name = document.getElementById(from.innerHTML);
+    name.className = memberStyle;
+    from.innerHTML = "";
   }
 }
 
