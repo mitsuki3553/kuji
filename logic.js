@@ -89,41 +89,53 @@ function resetName() {
   from.innerHTML = "";
   btn.disabled = true;
   if (timeId) {
-    clearInterval(timeId);
-    to.innerHTML = "";
+    resetInterval();
   }
 }
 
+function resetInterval() {
+  clearInterval(timeId);
+  to.innerHTML = "";
+  timeId = undefined;
+}
 //ボタンを押したとき
-// ①乱数生成
-// ②乱数に対応する人をピックアップ
-// ③「誰に」に表示
-// ④配列から削除
-// ⑤組み合わせ配列に追加
-// ⑥組み合わせの表示
-// ⑦「誰の」「誰に」を削除
+// ①シャッフルを止める
+// ②ボタンを押せなくする
+// *「誰から」と「誰へ」は被らない
+// ③乱数生成
+// ④乱数に対応する人をピックアップ
+// ⑤「誰へ」に表示
+// ⑥配列から削除
+// ⑦組み合わせ配列に追加
+// ⑧組み合わせの表示
+// ⑨「誰の」「誰へ」を削除
 
 btn.addEventListener("click", () => addTo());
 function addTo() {
-  btn.disabled = true;
-  const random = Math.floor(Math.random() * gift.length); //①
-  const takeGift = gift[random]; //②
-  to.innerHTML = takeGift; //③
-  gift.splice(random, 1); //④
+  if (timeId) {
+    resetInterval(); //①
+  }
+  btn.disabled = true; //②
+  const removeFrom = gift.filter((item) => item !== from.innerHTML);
+  const random = Math.floor(Math.random() * removeFrom.length); //③
+  const takeGift = removeFrom[random]; //④
+  to.innerHTML = takeGift; //⑤
+  const index = gift.indexOf(takeGift);
+  gift.splice(index, 1); //⑥
   //もらってない人がいなくなったらボタンを押せなくする
   if (gift.length === 0) {
     btn.disabled = true;
   }
-  matching.push({ gift: from.innerText, person: takeGift }); //⑤
+  matching.push({ gift: from.innerText, person: takeGift }); //⑦
   setTimeout(() => {
     match.innerHTML = ""; //「組み合わせ」内の削除
-    //⑥
+    //⑧
     matching.map((item) => {
       const div = document.createElement("div");
       div.innerText = `${item.gift} → ${item.person}`;
       matchDisplay.appendChild(div);
     });
-    to.innerHTML = ""; //⑦
-    from.innerHTML = ""; //⑦
-  }, 2000);
+    to.innerHTML = ""; //⑨
+    from.innerHTML = ""; //⑨
+  }, 1000);
 }
