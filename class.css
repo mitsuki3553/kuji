@@ -9,3 +9,11 @@
 .flex-wrap {
   flex-wrap: wrap;
 }
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.pointer {
+  cursor: pointer;
+}
