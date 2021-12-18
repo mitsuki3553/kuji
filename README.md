@@ -1,5 +1,7 @@
 # kuji
 
+こちらから → https://mitsuki3553.github.io/kuji/
+
 ## 使い方
 
 1. 名前をクリックする
