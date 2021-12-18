@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "postcss class.css -o dist.css",
+    "dev": "TAILWIND_MODE=watch postcss class.css -o dist.css -w",
     "build": "NODE_ENV=production postcss class.css -o dist.css"
   },
   "devDependencies": {
