@@ -98,7 +98,7 @@ function shuffleName() {
 // 「誰へ」の欄がランダムで変わる
 // *「誰から」がある場合は押せない
 function randomAddFrom() {
-  if (!from.innerHTML) {
+  if (!from.innerHTML && santaClaus.length) {
     const random = Math.floor(Math.random() * santaClaus.length);
     from.innerHTML = santaClaus[random];
     const name = document.getElementById(santaClaus[random]);
