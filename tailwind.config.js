@@ -3,7 +3,11 @@ module.exports = {
   purge: ["./index.html", "./*.js"],
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: (theme) => ({
+        christmas1: "url('./images/christmas1.jpg')",
+      }),
+    },
   },
   plugins: [],
 };
