@@ -33,6 +33,8 @@ let timeId;
 const btnStyle = "cursor-pointer  border border-solid rounded-full p-4";
 const memberStyle = `${btnStyle} shadow-2xl bg-white`;
 
+const clickStyle = "bg-present1 bg-cover h-28 w-28 font-bold";
+
 const member = document.getElementById("member");
 const from = document.getElementById("from");
 const to = document.getElementById("to");
@@ -55,8 +57,7 @@ window.onload = () => {
   const div = document.createElement("div");
   div.innerText = "ランダム";
   div.id = "ランダム";
-  div.className =
-    "cursor-pointer border-black border border-solid p-4 bg-black text-white rounded-full";
+  div.className = `${btnStyle} bg-black text-white rounded-full`;
   div.onclick = () => randomAddFrom(member);
   member.appendChild(div);
 };
@@ -64,7 +65,7 @@ window.onload = () => {
 // 名前を押したときの処理
 // ①「誰から」に名前を追加
 // ②名前一覧の色変更
-// ③ボタンを押せなくする
+// ③ボタンを押せるようにする
 // ④「誰へ」の欄がランダムで変わる
 // *「誰から」に名前がある場合はクリック不可
 // *「組み合わせ」の渡す側に名前がある場合は不可
@@ -75,8 +76,8 @@ function addFrom(item) {
     from.innerHTML = item; //①
     const name = document.getElementById(item);
     name.className = `${btnStyle} bg-black`; //②
-    btn.disabled = false; //③
-    shuffleName();
+    selectName(`${clickStyle} shadow-2xl bg-white rounded-full`);
+    shuffleName(); //④
   } else if (from.innerHTML === item) {
     resetName();
   }
@@ -92,6 +93,12 @@ function shuffleName() {
   }
 }
 
+function selectName() {
+  btn.disabled = false; //③
+  btn.className = `${clickStyle} shadow-2xl bg-white rounded-full`;
+  btn.innerHTML = "クリック！";
+}
+
 // ランダムボタンを押したときの処理
 // まだ渡してない人の中から一人選ぶ
 // 選ばれた人の名前を変色
@@ -103,7 +110,7 @@ function randomAddFrom() {
     from.innerHTML = santaClaus[random];
     const name = document.getElementById(santaClaus[random]);
     name.className = `${btnStyle} bg-black`; //②
-    btn.disabled = false; //③
+    selectName();
     shuffleName();
   } else if (from.innerHTML) {
     resetName();
@@ -123,10 +130,16 @@ function resetName() {
   const name = document.getElementById(from.innerHTML);
   name.className = memberStyle;
   from.innerHTML = "";
-  btn.disabled = true;
+  clickReset();
   if (timeId) {
     resetInterval();
   }
+}
+
+function clickReset() {
+  btn.disabled = true;
+  btn.className = clickStyle;
+  btn.innerHTML = "";
 }
 
 function resetInterval() {
@@ -152,7 +165,7 @@ function addTo() {
   if (timeId) {
     resetInterval(); //①
   }
-  btn.disabled = true; //②
+  clickReset();
   const removeFrom = gift.filter((item) => item !== from.innerHTML);
   const random = Math.floor(Math.random() * removeFrom.length); //③
   const takeGift = removeFrom[random]; //④
