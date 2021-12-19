@@ -75,8 +75,8 @@ function addFrom(item) {
   if (from.innerHTML === "" && exist.length === 0) {
     from.innerHTML = item; //①
     const name = document.getElementById(item);
-    name.className = `${btnStyle} bg-black`; //②
-    selectName(`${clickStyle} shadow-2xl bg-white rounded-full`);
+    // name.className = `${btnStyle} bg-black`; //②
+    selectName(name);
     shuffleName(); //④
   } else if (from.innerHTML === item) {
     resetName();
@@ -93,7 +93,8 @@ function shuffleName() {
   }
 }
 
-function selectName() {
+function selectName(name) {
+  name.className = `${btnStyle} bg-gray-600`; //②
   btn.disabled = false; //③
   btn.className = `${clickStyle} shadow-2xl bg-white rounded-full`;
   btn.innerHTML = "クリック！";
@@ -109,8 +110,8 @@ function randomAddFrom() {
     const random = Math.floor(Math.random() * santaClaus.length);
     from.innerHTML = santaClaus[random];
     const name = document.getElementById(santaClaus[random]);
-    name.className = `${btnStyle} bg-black`; //②
-    selectName();
+    // name.className = `${btnStyle} bg-black`; //②
+    selectName(name);
     shuffleName();
   } else if (from.innerHTML) {
     resetName();
