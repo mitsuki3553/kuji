@@ -17,56 +17,90 @@
       flex flex-col
       bg-image
       text-center
-      bg-christmas1 bg-[rgba(255,255,255,0.4)] bg-blend-lighten
+      bg-christmas1 bg-[rgba(255,255,255,0.4)] bg-blend-lighten bg-cover
     "
   >
-    <header class="bg-black text-white text-4xl opacity-70">
+    <header class="bg-black text-white text-4xl opacity-70 py-4">
       プレゼント交換
     </header>
     <main class="flex-auto bg-purple-200 bg-opacity-80">
-      <p>渡す人🎅</p>
-      <div id="member" class="flex flex-wrap gap-4 p-2 justify-center"></div>
-      <div class="flex justify-between mx-20">
-        <div class="w-32">
-          <h2>誰から？</h2>
+      <p class="text-3xl mt-4 mb-2">渡す人🎅</p>
+      <div
+        id="member"
+        class="
+          flex flex-wrap
+          gap-4
+          p-2
+          justify-center
+          border
+          rounded-xl
+          bg-amber-50
+          mb-8
+          mx-4
+        "
+      ></div>
+      <div class="flex justify-between mx-12">
+        <div class="w-60 space-y-2">
+          <h2 class="text-2xl font-bold">誰から？</h2>
           <div
             id="from"
             class="
-              h-16
-              w-32
+              h-24
               cursor-pointer
               bg-white
               rounded-full
-              leading-[4rem]
+              leading-[6rem]
+              text-xl
             "
           ></div>
         </div>
-        <button id="btn" class="bg-slate-100" disabled>クリック！！</button>
-        <div class="w-32">
-          <h2>誰へ？</h2>
+        <button
+          id="btn"
+          class="bg-present1 bg-cover h-28 w-28 font-bold"
+          disabled
+        >
+          クリック！！
+        </button>
+        <div class="w-60 space-y-2">
+          <h2 class="text-2xl font-bold">誰へ？</h2>
           <div
             id="to"
             class="
-              h-16
-              w-32
+              h-24
               cursor-pointer
               bg-white
               rounded-full
-              leading-[4rem]
+              leading-[6rem]
+              text-xl
             "
           ></div>
         </div>
       </div>
-      <div class="text-2xl">名前</div>
-      <h2>組み合わせ</h2>
-      <div id="match" class="flex flex-wrap gap-4 p-4 justify-center"></div>
+      <h2 class="mt-4 text-3xl">組み合わせ</h2>
+      <div
+        id="match"
+        class="
+          gap-4
+          p-4
+          justify-center
+          bg-present
+          bg-[rgba(255,255,255,0.8)]
+          bg-blend-lighten
+          bg-no-repeat
+          bg-cover
+          rounded-xl
+          mt-4
+          mx-4
+          min-h-[20rem]
+        "
+      ></div>
     </main>
     <footer class="bg-white flex justify-end">
       <div>created by nomura</div>
       <a
         href="https://github.com/mitsuki3553/kuji"
         target="_blank"
-        class="inline-flex items-center mx-4"
+        class="inline-flex items-center mx-4 underline text-blue-700"
         ><img
           src="images/github.png"
           alt="github icon"
