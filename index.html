@@ -20,11 +20,11 @@
       bg-christmas1 bg-[rgba(255,255,255,0.4)] bg-blend-lighten bg-cover
     "
   >
-    <header class="bg-black text-white text-3xl opacity-70 py-4">
+    <header class="bg-black text-white text-3xl opacity-70 py-4 font-hachimaru">
       プレゼント交換
     </header>
     <main class="flex-auto bg-purple-200 bg-opacity-80">
-      <p class="text-3xl mt-4 mb-2">渡す人🎅</p>
+      <p class="text-3xl mt-4 mb-2 font-yomogi">渡す人🎅</p>
       <div
         id="member"
         class="
@@ -37,11 +37,12 @@
           bg-amber-50
           mb-8
           mx-4
+          select-none
         "
       ></div>
       <div class="flex justify-between mx-12">
         <div class="w-60 space-y-2">
-          <h2 class="text-2xl font-bold">誰から？</h2>
+          <h2 class="text-2xl font-bold font-yomogi">誰から？</h2>
           <div
             id="from"
             class="
@@ -51,6 +52,8 @@
               rounded-full
               leading-[6rem]
               text-3xl
+              font-dot
+              select-none
             "
           ></div>
         </div>
@@ -60,7 +63,7 @@
           disabled
         ></button>
         <div class="w-60 space-y-2">
-          <h2 class="text-2xl font-bold">誰へ？</h2>
+          <h2 class="text-2xl font-bold font-yomogi">誰へ？</h2>
           <div
             id="to"
             class="
@@ -70,11 +73,13 @@
               rounded-full
               leading-[6rem]
               text-3xl
+              font-dot
+              select-none
             "
           ></div>
         </div>
       </div>
-      <h2 class="mt-4 text-3xl">組み合わせ</h2>
+      <h2 class="mt-4 text-3xl font-yomogi">組み合わせ</h2>
       <div
         id="match"
         class="

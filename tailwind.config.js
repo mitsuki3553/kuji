@@ -7,6 +7,11 @@ module.exports = {
         present1: "url('./images/present1.png')",
         present: "url('./images/present.png')",
       }),
+      fontFamily: {
+        hachimaru: "Hachi Maru Pop",
+        dot: "DotGothic16",
+        yomogi: "Yomogi",
+      },
     },
   },
   plugins: [],

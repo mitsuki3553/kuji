@@ -31,7 +31,7 @@ const matching = [];
 let timeId;
 
 const btnStyle = "cursor-pointer  border border-solid rounded-full p-4";
-const memberStyle = `${btnStyle} shadow-2xl bg-white`;
+const memberStyle = `${btnStyle} shadow-2xl bg-white font-dot`;
 
 const clickStyle = "bg-present1 bg-cover h-28 w-28 font-bold";
 
@@ -57,7 +57,7 @@ window.onload = () => {
   const div = document.createElement("div");
   div.innerText = "ランダム";
   div.id = "ランダム";
-  div.className = `${btnStyle} bg-black text-white `;
+  div.className = `${btnStyle} bg-black text-white font-dot`;
   div.onclick = () => randomAddFrom(member);
   member.appendChild(div);
 };
@@ -95,7 +95,7 @@ function shuffleName() {
 function selectName(name) {
   name.className = `${btnStyle} bg-gray-600`;
   btn.disabled = false;
-  btn.className = `${clickStyle} shadow-2xl bg-white rounded-full`;
+  btn.className = `${clickStyle} shadow-2xl bg-white rounded-full font-dot`;
   btn.innerHTML = "クリック！";
 }
 
