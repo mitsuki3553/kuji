@@ -1,7 +1,5 @@
 module.exports = {
-  mode: "jit",
-  purge: ["./index.html", "./*.js"],
-  content: [],
+  content: ["./index.html", "./*.js"],
   theme: {
     extend: {
       backgroundImage: (theme) => ({
