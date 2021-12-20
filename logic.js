@@ -57,7 +57,7 @@ window.onload = () => {
   const div = document.createElement("div");
   div.innerText = "ランダム";
   div.id = "ランダム";
-  div.className = `${btnStyle} bg-black text-white rounded-full`;
+  div.className = `${btnStyle} bg-black text-white `;
   div.onclick = () => randomAddFrom(member);
   member.appendChild(div);
 };
@@ -75,7 +75,6 @@ function addFrom(item) {
   if (from.innerHTML === "" && exist.length === 0) {
     from.innerHTML = item; //①
     const name = document.getElementById(item);
-    // name.className = `${btnStyle} bg-black`; //②
     selectName(name);
     shuffleName(); //④
   } else if (from.innerHTML === item) {
@@ -94,8 +93,8 @@ function shuffleName() {
 }
 
 function selectName(name) {
-  name.className = `${btnStyle} bg-gray-600`; //②
-  btn.disabled = false; //③
+  name.className = `${btnStyle} bg-gray-600`;
+  btn.disabled = false;
   btn.className = `${clickStyle} shadow-2xl bg-white rounded-full`;
   btn.innerHTML = "クリック！";
 }
@@ -187,14 +186,13 @@ function addTo() {
     //⑧
     matching.map((item, index) => {
       const div = document.createElement("div");
-      div.className = "text-2xl";
-      if (index % 2 === 0)
-        div.className = `${div.className} bg-gray-700 text-white`;
-      if (index % 2 === 1) div.className = `${div.className} bg-white`;
+      div.className = "text-2xl mt-2 rounded-full opacity-80 text-white";
+      if (index % 2 === 0) div.className = `${div.className} bg-green-800`;
+      if (index % 2 === 1) div.className = `${div.className} bg-red-700`;
       div.innerText = `${item.gift} → ${item.person}`;
       matchDisplay.appendChild(div);
     });
     to.innerHTML = ""; //⑨
     from.innerHTML = ""; //⑨
-  }, 1000);
+  }, 500);
 }
