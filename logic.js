@@ -88,7 +88,7 @@ function shuffleName() {
       const random = Math.floor(Math.random() * gift.length);
       const name = gift[random];
       to.innerHTML = name;
-    }, 300);
+    }, 100);
   }
 }
 
@@ -109,7 +109,6 @@ function randomAddFrom() {
     const random = Math.floor(Math.random() * santaClaus.length);
     from.innerHTML = santaClaus[random];
     const name = document.getElementById(santaClaus[random]);
-    // name.className = `${btnStyle} bg-black`; //②
     selectName(name);
     shuffleName();
   } else if (from.innerHTML) {
