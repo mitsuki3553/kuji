@@ -185,9 +185,12 @@ function addTo() {
     santaClaus.splice(index2, 1); //⑥
 
     //⑧
-    matching.map((item) => {
+    matching.map((item, index) => {
       const div = document.createElement("div");
       div.className = "text-2xl";
+      if (index % 2 === 0)
+        div.className = `${div.className} bg-gray-700 text-white`;
+      if (index % 2 === 1) div.className = `${div.className} bg-white`;
       div.innerText = `${item.gift} → ${item.person}`;
       matchDisplay.appendChild(div);
     });
