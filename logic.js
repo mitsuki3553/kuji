@@ -3,19 +3,19 @@ const memberList = [
   "今井さん",
   "河田さん",
   "後藤さん",
-  "澤田さん",
-  "鈴木さん",
-  "瀬古さん",
-  "ノムラさん",
-  "小木曽さん",
-  "堀部さん",
-  "水野さん",
-  "武藤さん",
-  "諸戸さん",
-  "安田さん",
-  "谷藤さん",
-  "堀部先生",
-  "櫻井さん",
+  // "澤田さん",
+  // "鈴木さん",
+  // "瀬古さん",
+  // "ノムラさん",
+  // "小木曽さん",
+  // "堀部さん",
+  // "水野さん",
+  // "武藤さん",
+  // "諸戸さん",
+  // "安田さん",
+  // "谷藤さん",
+  // "堀部先生",
+  // "櫻井さん",
 ];
 
 //まだ渡してない人
@@ -165,17 +165,36 @@ function addTo() {
     resetInterval(); //①
   }
   clickReset();
-  const removeFrom = gift.filter((item) => item !== from.innerHTML);
-  const random = Math.floor(Math.random() * removeFrom.length); //③
-  const takeGift = removeFrom[random]; //④
-  to.innerHTML = takeGift; //⑤
-  const index = gift.indexOf(takeGift);
+  if (gift.length === 2) {
+    const mix = [...gift, ...santaClaus];
+    const dup = new Set(mix);
+    if (dup.size !== mix.length) {
+      const dupName = mix.find(
+        (person, index) => index !== mix.lastIndexOf(person)
+      );
+      to.innerHTML =
+        from.innerHTML !== dupName
+          ? dupName
+          : gift.find((i) => i !== from.innerHTML);
+    } else {
+      const removeFrom = gift.filter((item) => item !== from.innerHTML);
+      const random = Math.floor(Math.random() * removeFrom.length); //③
+      const takeGift = removeFrom[random]; //④
+      to.innerHTML = takeGift; //⑤
+    }
+  } else {
+    const removeFrom = gift.filter((item) => item !== from.innerHTML);
+    const random = Math.floor(Math.random() * removeFrom.length);
+    const takeGift = removeFrom[random];
+    to.innerHTML = takeGift;
+  }
+  const index = gift.indexOf(to.innerHTML);
   gift.splice(index, 1); //⑥
   //もらってない人がいなくなったらボタンを押せなくする
   if (gift.length === 0) {
     btn.disabled = true;
   }
-  matching.push({ gift: from.innerText, person: takeGift }); //⑦
+  matching.push({ gift: from.innerText, person: to.innerText }); //⑦
   setTimeout(() => {
     matchDisplay.innerHTML = ""; //「組み合わせ」内の削除
     //渡す人の配列から削除
