@@ -6,7 +6,7 @@ const memberList = [
   "澤田さん",
   "鈴木さん",
   "瀬古さん",
-  "ノムラ",
+  "ノムラさん",
   "小木曽さん",
   "堀部さん",
   "水野さん",
@@ -194,4 +194,42 @@ function addTo() {
     to.innerHTML = ""; //⑨
     from.innerHTML = ""; //⑨
   }, 500);
+
+  if (gift.length === 0) {
+    const bodyBlinder = document.createElement("div");
+    bodyBlinder.className =
+      "opacity-60 bg-black w-full h-full fixed inset-0 z-10";
+    document.body.appendChild(bodyBlinder);
+
+    const result = document.createElement("div");
+    result.className =
+      "fixed inset-0 m-auto mx-20 my-12 rounded-2xl bg-present bg-[rgba(255,255,255,0.8)] bg-blend-lighten bg-opacity-90 z-20";
+    document.body.appendChild(result);
+
+    const reloadBtn = document.createElement("button");
+    reloadBtn.innerHTML = "リセット";
+    reloadBtn.className = `${btnStyle} bg-blue-700 text-white shadow-2xl font-dot absolute right-12 top-4`;
+    reloadBtn.onclick = () => location.reload();
+    result.appendChild(reloadBtn);
+
+    const resultText = document.createElement("div");
+    resultText.innerHTML = "結果";
+    resultText.className = "text-4xl text-center font-dot my-8 ";
+    result.appendChild(resultText);
+
+    const container = document.createElement("div");
+    container.className = "flex flex-wrap justify-center gap-4";
+    result.appendChild(container);
+
+    matching.map((item, index) => {
+      const div = document.createElement("div");
+      div.className =
+        "text-2xl p-2 text-center rounded-full opacity-90 text-white w-[40%]";
+      if ((index + 4) % 4 === 0 || (index + 4) % 4 === 3)
+        div.className = `${div.className} bg-green-800`;
+      else div.className = `${div.className} bg-red-700`;
+      div.innerText = `${item.gift} → ${item.person}`;
+      container.appendChild(div);
+    });
+  }
 }
