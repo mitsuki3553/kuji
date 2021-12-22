@@ -184,6 +184,7 @@ function addTo() {
     from.innerHTML = ""; //⑨
   }, 500);
 
+  //まだ渡してない人がいなくなったら別画面を表示
   if (gift.length === 0) {
     const bodyBlinder = document.createElement("div");
     bodyBlinder.className =
